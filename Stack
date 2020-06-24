@@ -2,6 +2,7 @@
 
 한 쪽 끝에서만 자료를 넣고 뺄 수 있는 LIFO 형식의 자료구조
 LIFO : Last In First Out -> 가장 최근에 스택에 추가한 항목이 먼저 제거됨
+  ex) 함수호출, 순환함수, 미로 찾기 등 
 
 # 스택의 연산
 
@@ -12,3 +13,39 @@ is_Empty() : 스택이 비어 있을 때에 true를 반환
 
 # 스택의 구현
 
+[배열 스택]
+
+
+[공백상태]
+int is_emnty() {
+  return (top == -1);
+}
+
+[포화상태]
+int is_full() {
+  return (top == Max_Stack_Size-1);
+}
+
+[삽입함수]
+void push(element item) {
+  if(is_full()) {
+    printf("Stack Full\n");
+    exit(1);
+  }
+  else
+    stack[++top] = item;
+}
+
+[삭제함수]
+element pop() {
+  if(is_empty()) {
+    printf("Stack Empty\n");
+    exit(1);
+  }
+  else
+    return stack[top--];
+}
+
+----------------------------------------------------------------------------
+
+[연결리스트 스택]
