@@ -1,8 +1,11 @@
+
 # 스택의 개념
 
 한 쪽 끝에서만 자료를 넣고 뺄 수 있는 LIFO 형식의 자료구조
 LIFO : Last In First Out -> 가장 최근에 스택에 추가한 항목이 먼저 제거됨
   ex) 함수호출, 순환함수, 미로 찾기 등 
+  
+----------------------------------------------------------------------------
 
 # 스택의 연산
 
@@ -11,22 +14,33 @@ push() : item 하나를 스택의 가장 윗 부분에 추가
 peek() : 스택의 가장 위에 있는 항목을 반환
 is_Empty() : 스택이 비어 있을 때에 true를 반환
 
-# 스택의 구현
+----------------------------------------------------------------------------
 
-[배열 스택]
+# 스택의 구현 - 배열 기반 스택  
 
+[스택 구조 정의]
+
+#define Max_Stack_Size 100   /*최대 스택 크기*/
+typedef struct {
+  int key;
+} element;
+elemnt stack[Max_Stack_Size];
+int top = -1;
 
 [공백상태]
+
 int is_emnty() {
   return (top == -1);
 }
 
 [포화상태]
+
 int is_full() {
   return (top == Max_Stack_Size-1);
 }
 
 [삽입함수]
+
 void push(element item) {
   if(is_full()) {
     printf("Stack Full\n");
@@ -37,6 +51,7 @@ void push(element item) {
 }
 
 [삭제함수]
+
 element pop() {
   if(is_empty()) {
     printf("Stack Empty\n");
@@ -48,4 +63,29 @@ element pop() {
 
 ----------------------------------------------------------------------------
 
-[연결리스트 스택]
+# 스택의 구현 - 연결리스트 기반 스택 
+
+[스택 구조 정의]
+
+typedef int elemnt;
+typedef struct stackNode {
+  elemnt item;
+  struct stackNode *link;
+} stackNode;
+stackNode *top;
+
+장점 : 크기가 제한되지않음
+단점 : 배열보다 구현이 복잡
+
+[삽입함수]
+
+temp -> item = item;
+temp -> link = top;
+top = temp;
+
+[삭제함수]
+
+stackNode *temp = top
+item = temp -> item;
+top = top -> link;
+free(temp);
